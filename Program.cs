@@ -27,7 +27,6 @@ namespace CLI_TTRPGInventoryManager
 			Console.ReadKey();
 		}
 
-		// ----------------- PARTY MANAGEMENT -----------------
 		static Party ShowMainMenu()
 		{
 			ClearAndPrintHeader("TTRPG Inventory Manager");
