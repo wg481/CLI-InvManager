@@ -1,0 +1,15 @@
+/home/massimo/Documents/CLI-Application/CLI-InvManager/bin/Debug/net10.0/CLI-TTRPGInventoryManager
+/home/massimo/Documents/CLI-Application/CLI-InvManager/bin/Debug/net10.0/CLI-TTRPGInventoryManager.deps.json
+/home/massimo/Documents/CLI-Application/CLI-InvManager/bin/Debug/net10.0/CLI-TTRPGInventoryManager.runtimeconfig.json
+/home/massimo/Documents/CLI-Application/CLI-InvManager/bin/Debug/net10.0/CLI-TTRPGInventoryManager.dll
+/home/massimo/Documents/CLI-Application/CLI-InvManager/bin/Debug/net10.0/CLI-TTRPGInventoryManager.pdb
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.GeneratedMSBuildEditorConfig.editorconfig
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.AssemblyInfoInputs.cache
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.AssemblyInfo.cs
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.csproj.CoreCompileInputs.cache
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.sourcelink.json
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.dll
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/refint/CLI-TTRPGInventoryManager.dll
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.pdb
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.genruntimeconfig.cache
+/home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/ref/CLI-TTRPGInventoryManager.dll
