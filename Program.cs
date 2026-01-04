@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CLI_TTRPGInventoryManager
 {
@@ -35,6 +36,7 @@ namespace CLI_TTRPGInventoryManager
 
 			Console.WriteLine("1. New Party");
 			Console.WriteLine("2. Load a Party");
+			Console.WriteLine("3. Credits");
 			Console.WriteLine("x. Exit");
 			Console.Write("\nChoice: ");
 			string choice = Console.ReadLine();
@@ -53,6 +55,10 @@ namespace CLI_TTRPGInventoryManager
 					Console.Write("Party name: ");
 					string partyname = Console.ReadLine();
 					party = LoadParty(partyname);
+					break;
+
+				case "3":
+					Credits();
 					break;
 				
 				case "x":
@@ -142,7 +148,8 @@ namespace CLI_TTRPGInventoryManager
 			while (running)
 			{
 				ClearAndPrintHeader($"Player: {player.Name}   Gold: {player.Gold}");
-				Console.WriteLine($"=== Level: {player.Level}   EXP: {player.Experience}===");
+				Console.WriteLine($"Level: {player.Level}   EXP: {player.Experience}");
+				Console.WriteLine("");
 				Console.WriteLine("1. Inventory Manager");
 				Console.WriteLine("2. Edit Gold");
 				Console.WriteLine("3. Experience and Editor");
@@ -426,6 +433,24 @@ namespace CLI_TTRPGInventoryManager
 		{
 			string json = File.ReadAllText($"{filename}.json");
 			return JsonSerializer.Deserialize<Party>(json);
+		}
+
+		static void Credits()
+		{
+			ClearAndPrintHeader("Credits");
+			Console.WriteLine("Written in C# by wg481.");
+			Console.WriteLine("");
+			Console.WriteLine("If you paid for this software, request a refund.");
+			Console.WriteLine("");
+			var lines = File.ReadLines("LICENSE");
+			foreach (var line in lines)
+			{
+				Console.WriteLine(line);
+			}
+			Console.WriteLine();
+			Console.WriteLine("Upon pressing a key, the software will close.");
+			WaitForKey();
+			Environment.Exit(0);
 		}
 
 	}

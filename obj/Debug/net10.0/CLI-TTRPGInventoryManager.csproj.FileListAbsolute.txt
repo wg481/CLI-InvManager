@@ -13,3 +13,4 @@
 /home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.pdb
 /home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/CLI-TTRPGInventoryManager.genruntimeconfig.cache
 /home/massimo/Documents/CLI-Application/CLI-InvManager/obj/Debug/net10.0/ref/CLI-TTRPGInventoryManager.dll
+/home/massimo/Documents/CLI-Application/CLI-InvManager/bin/Debug/net10.0/LICENSE

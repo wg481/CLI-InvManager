@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CLI-TTRPGInventoryManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea10ff7c702de4ab062be93f2fe2e1dcef35305c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be358030ce1a0a53fae36e76d13a2747b087d4bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("CLI-TTRPGInventoryManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CLI-TTRPGInventoryManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
