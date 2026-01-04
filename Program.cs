@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Text.Json;
 
 namespace CLI_TTRPGInventoryManager
@@ -27,12 +28,14 @@ namespace CLI_TTRPGInventoryManager
 			Console.ReadKey();
 		}
 
+
 		static Party ShowMainMenu()
 		{
 			ClearAndPrintHeader("TTRPG Inventory Manager");
 
 			Console.WriteLine("1. New Party");
 			Console.WriteLine("2. Load a Party");
+			Console.WriteLine("x. Exit");
 			Console.Write("\nChoice: ");
 			string choice = Console.ReadLine();
 
@@ -50,6 +53,10 @@ namespace CLI_TTRPGInventoryManager
 					Console.Write("Party name: ");
 					string partyname = Console.ReadLine();
 					party = LoadParty(partyname);
+					break;
+				
+				case "x":
+					Environment.Exit(0);
 					break;
 
 				default:
@@ -72,7 +79,7 @@ namespace CLI_TTRPGInventoryManager
 				Console.WriteLine("1. Select Player");
 				Console.WriteLine("2. Add Player");
 				Console.WriteLine("3. Remove Player");
-				Console.WriteLine("4. Save & Exit");
+				Console.WriteLine("x. Save & Exit");
 				Console.Write("\nChoice: ");
 
 				switch (Console.ReadLine())
@@ -98,7 +105,7 @@ namespace CLI_TTRPGInventoryManager
 						WaitForKey();
 						break;
 
-					case "4":
+					case "x":
 						running = false;
 						break;
 				}
@@ -134,12 +141,12 @@ namespace CLI_TTRPGInventoryManager
 
 			while (running)
 			{
-				ClearAndPrintHeader($"Player: {player.Name}");
-				Console.WriteLine("1) View Inventory");
-				Console.WriteLine("2) Add Item");
-				Console.WriteLine("3) Edit Item");
-				Console.WriteLine("4) Remove Item");
-				Console.WriteLine("5) Back");
+				ClearAndPrintHeader($"Player: {player.Name}   Gold: {player.Gold}");
+				Console.WriteLine($"=== Level: {player.Level}   EXP: {player.Experience}===");
+				Console.WriteLine("1. Inventory Manager");
+				Console.WriteLine("2. Edit Gold");
+				Console.WriteLine("3. Experience and Editor");
+				Console.WriteLine("x. Exit");
 				Console.Write("\nChoice: ");
 
 				switch (Console.ReadLine())
@@ -147,45 +154,68 @@ namespace CLI_TTRPGInventoryManager
 					case "1":
 						ShowInventory(player);
 						break;
-
 					case "2":
-						AddItemCLI(player);
+						EditGoldCLI(player);
 						break;
-
 					case "3":
-						EditItemCLI(player);
+						ExperienceEditor(player);
 						break;
-
-					case "4":
-						RemoveItemCLI(player);
-						break;
-
-					case "5":
+					case "x":
 						running = false;
 						break;
 				}
 			}
 		}
 
+// CLI Interfacing - Edits properties of Player
+
 		static void ShowInventory(Player player)
 		{
-			ClearAndPrintHeader($"Inventory for {player.Name}");
+			bool runningInvManager = true;
+			while (runningInvManager)
+			{
 
-			if (player.Inventory.Count == 0)
-			{
-				Console.WriteLine("Inventory is empty.");
-			}
-			else
-			{
-				for (int i = 0; i < player.Inventory.Count; i++)
+				ClearAndPrintHeader($"Inventory for {player.Name}");
+
+				if (player.Inventory.Count == 0)
 				{
-					Item item = player.Inventory[i];
-					Console.WriteLine($"{i}) {item.Name} x{item.Quantity}");
-					Console.WriteLine($"   {item.Description}");
+					Console.WriteLine("Inventory is empty.");
+				}
+				else
+				{
+					for (int i = 0; i < player.Inventory.Count; i++)
+					{
+						Item item = player.Inventory[i];
+						Console.WriteLine($"{i}) {item.Name} x{item.Quantity}");
+						Console.WriteLine($"   {item.Description}");
+					}
+				}
+
+				Console.WriteLine("");
+				Console.WriteLine("Inventory Options:");
+				Console.WriteLine("1. Add Item");
+				Console.WriteLine("2. Remove Item");
+				Console.WriteLine("3. Edit existing Item");
+				Console.WriteLine("x. Exit");
+				Console.Write("\n Select an option: ");
+				string input = Console.ReadLine();
+
+				switch (input)
+				{
+					case "1":
+						AddItemCLI(player);
+						break;
+					case "2":
+						RemoveItemCLI(player);
+						break;
+					case "3":
+						EditItemCLI(player);
+						break;
+					case "x":
+						runningInvManager = false;
+						break;
 				}
 			}
-
-			WaitForKey();
 		}
 
 		static void AddItemCLI(Player player)
@@ -279,7 +309,109 @@ namespace CLI_TTRPGInventoryManager
 
 			WaitForKey();
 		}
+		static void EditGoldCLI(Player player)
+		{
+			ClearAndPrintHeader($"Editing Gold for {player}");
+			Console.WriteLine("1. Add Gold");
+			Console.WriteLine("2. Remove Gold");
+			Console.WriteLine("3. Exit");
+			Console.Write("Choose an option: ");
+			string input = Console.ReadLine();
 
+			switch (input)
+			{
+				case "1":
+					Console.WriteLine("Add how much gold: ");
+					player.Gold += Convert.ToInt32(Console.ReadLine());
+					break;
+				case "2":
+					Console.WriteLine("Remove how much gold: ");
+					player.Gold -= Convert.ToInt32(Console.ReadLine());
+					break;
+				case "3":
+					break;
+				case "":
+					break;
+				case null:
+					break;
+			}
+		}
+
+		static void ExperienceEditor(Player player)
+		{
+			ClearAndPrintHeader($"Editing Experience for: {player.Name}");
+			Console.WriteLine($"Current Level: {player.Level}");
+			Console.WriteLine($"Current Experience: {player.Experience}");
+			Console.WriteLine("1. Update Experience");
+			Console.WriteLine("2. Update Level");
+			Console.WriteLine("x. Return to Player Menu");
+			Console.Write("\nSelect an option: ");
+			string input = Console.ReadLine();
+
+			switch (input)
+			{
+				case "1":
+					ClearAndPrintHeader($"Current Experience: {player.Experience}");
+					Console.WriteLine("1. Add Experience");
+					Console.WriteLine("2. Remove Experience");
+					Console.WriteLine("x. Exit");
+					Console.Write("\nSelect an option: ");
+					string input2 = Console.ReadLine();
+
+					switch (input2)
+					{
+						case "1":
+							Console.Write("\nAdd how much experience: ");
+							player.Experience += Convert.ToInt32(Console.ReadLine());
+							break;
+						case "2":
+							Console.Write("\nRemove how much experience: ");
+							player.Experience -= Convert.ToInt32(Console.ReadLine());
+							break;
+						case "x":
+							break;
+						default:
+							break;
+					}
+
+					break;
+				case "2":
+					ClearAndPrintHeader($"Current Level: {player.Level}");
+					Console.WriteLine("1. Level Up");
+					Console.WriteLine("2. Level Down");
+					Console.WriteLine("3. Manual Level Set");
+					Console.WriteLine("x. Exit");
+					Console.Write("\nSelect an option: ");
+					string input3 = Console.ReadLine();
+
+					switch (input3)
+					{
+						case "1":
+							player.Level++;
+							break;
+						case "2":
+							player.Level--;
+							break;
+						case "3":
+							Console.Write("\nSet level to: ");
+							player.Level = Convert.ToInt32(Console.ReadLine());
+							break;
+						case "x":
+							break;
+						default:
+							break;
+					}
+					break;
+				case "x":
+					break;
+				default:
+					break;
+			}
+
+		}
+
+
+// SAVE AND LOAD - Dumps all to JSON.
 		static void SaveParty(Party party)
 		{
 			string json = JsonSerializer.Serialize(
@@ -295,6 +427,7 @@ namespace CLI_TTRPGInventoryManager
 			string json = File.ReadAllText($"{filename}.json");
 			return JsonSerializer.Deserialize<Party>(json);
 		}
+
 	}
 }
  
